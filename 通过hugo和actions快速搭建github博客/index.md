@@ -27,7 +27,13 @@
 
 ## 部署本地环境
 
+{{< admonition>}}
+
 **只适用于Hugo系统**
+
+**推荐下载extended版本，该版本可自定义样式**
+
+{{< /admonition >}}
 
 Hugo下载地址：https://github.com/gohugoio/hugo/releases
 
@@ -44,6 +50,8 @@ cd my_website
 git init
 git submodule add https://github.com/dillonzq/LoveIt.git themes/LoveIt
 # 修改config.toml配置文件，可进入https://hugoloveit.com/zh-cn/theme-documentation-basics/，作为配置参考
+# 中文需要在第二行添加一条配置
+defaultContentLanguage = "zh-cn"
 
 # 生成第一篇文章，在first_post.md随意输入，draft: true 改为 draft: false
 hugo new posts/first_post.md
@@ -85,27 +93,44 @@ git config --global user.name “your name”
 git config --global user.email “your email”
 # 在需要同步的本地仓库，执行初始化
 git init
+```
+``` shell
+# git关联远程仓库地址的三种方式
+## 1.先删后加，add是需要先删处再添加，origin默认推荐仓库名
+git remote remove origin
+git remote add origin https://github.com/test/test.git
+## 2.修改，set-url是在已有连接时修改关联远程数据库
+git remote set-url <remote_name> <remote_url>
+git remote set-url origin https://github.com/test/test.git
+## 3.直接修改config文件
+git config -e
 
-# 提交代码到本地
+# 获取token，在连接过程中会需要认证，选择token认证
+右上角头像 --> Settings -->  Developer Settings --> Personal access tokens(classic)
+```
+``` shell
+# 将远程仓库的文件pull到本地
+git pull --rebase origin master
+
+# 提交代码小脚本:upload.bat
+@echo off
+cd 本地仓库根目录
 git status	# 查看代码状态
 git add .	# 将代码添加到暂存区，(.代表该目录下所有文件、还可用*.md等等)
 git commit -m "first commit"	# 将代码提交到本地仓库(后跟该次提交的名称)
-
-# 获取token，具体选项自行选自或参考连接，在连接过程中会需要认证，选择token认证
-右上角头像 --> Settings -->  Developer Settings --> Personal access tokens(classic)
-# 关联远程GitHub仓库
-git remote set-url origin https://github.com/xiaoming/Blog_Private.git(换成自己Blog_Private仓库的HTTPS连接)
-# 查看连接状态
-git show remote origin
-# 将代码push到远程仓库
-git push origin master
+git push origin master	# 将代码push到远程仓库
+pause
 ```
 
 ## 配置Actions文件
 
+{{< admonition>}}
+
 **在Blog_Private仓库的Actions中自定义一个workflows**
 
 **配置如下，只适用于Hugo系统**
+
+{{< /admonition>}}
 
 ```yaml
 name: GitHub Pages
@@ -146,7 +171,7 @@ jobs:
 **此处有两个问题**
 
 * `secrets.ACTIONS_DEPLOY_KEY`私钥和`xiaoming.github.io`的公钥未配置导致`Deploy`步骤报错
-* Actions会自动部署到`xiaoming.github.io`库的master分支，而现在`xiaoming.github.io`库可能默认为main分支，需要重命名main为master，若未出现则无需修改
+* 若未出现则无需理会。Actions会自动部署到`xiaoming.github.io`库的master分支，而现在`xiaoming.github.io`库可能默认为main分支，需要重命名main为master
 
 ## 生成并设置密钥
 
@@ -161,18 +186,49 @@ jobs:
 ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
 ```
 
-公钥`gh-pages.pub`放在`xiaoming.github.io`中`Settings`的`Deploy keys`中，名字随意
+* 公钥`gh-pages.pub`放在`xiaoming.github.io`中`Settings`的`Deploy keys`中，名字随意
 
-私钥`gh-pages`放在`Blog_Private`中`Settings`的`Secrets`的`Actions`的`New repository secrets`，名字必须为`ACTIONS_DEPLOY_KEY`
+* 私钥`gh-pages`放在`Blog_Private`中`Settings`的`Secrets`的`Actions`的`New repository secrets`，名字必须为`ACTIONS_DEPLOY_KEY`
 
 配置完成后，再次点击`Actions`，点击中间`main.yml`，点击右边`Re-run all jobs`，无报错，便完成
 
-## 注意
+## 自定义样式
 
-在上传文件前别忘先把项目同步到本地，以免造成文件丢失
+参考：https://lucas-0.github.io/
 
-```shell
-# 将远程仓库的文件pull到本地
-git pull --rebase origin master
+创建文件：\assets\css\\_custom.scss
+
+```scss
+// ==============================
+// Custom style
+// 自定义样式
+// ==============================
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&family=Noto+Serif+SC&family=Roboto+Slab:wght@100..900&display=swap');
+.page {
+    position: relative;
+    max-width: 800px; //宽度限制800
+    margin: 0 auto;
+  }
+
 ```
+创建文件：\assets\css\\_override.scss
+```scss
+// ==============================
+// Override Variables
+// 覆盖变量
+// ==============================
+// @import url('https://fonts.proxy.ustclug.org/css2?family=Rock+Salt&family=Noto+Serif+SC:wght@400;600;700&family=Roboto+Slab:wght@400;600;700&display=swap'); //使用中科大加速
+// @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&family=Noto+Serif+SC:wght@200..900&family=Roboto+Slab:wght@100..900&display=swap');
+
+// Font and Line Height
+$global-font-family: "Roboto Slab", "Noto Serif SC", "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", "Segoe UI Emoji", "Segoe UI Symbol", Helvetica, Arial, -apple-system, system-ui, sans-serif;
+$global-font-size: 18px;
+$global-font-weight: 400; //粗细
+$global-line-height: 1.75rem; //文本行的基线间的距离 原始1.5rem会让屏幕宽不够时h1重合
+h1{font-size:1.5em;} //原始为2em，会与行高1.5rem冲突，修改为1.5em
+$header-title-font-family: "Rock Salt", -apple-system, system-ui, sans-serif;
+// Color of the secondary text
+$global-font-secondary-color: #7d7d84;
+```
+
 

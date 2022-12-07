@@ -196,7 +196,7 @@ ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
 
 参考：https://lucas-0.github.io/
 
-创建文件：\assets\css\\_custom.scss
+创建文件：`\assets\css\\_custom.scss`
 
 ```scss
 // ==============================
@@ -211,7 +211,7 @@ ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
   }
 
 ```
-创建文件：\assets\css\\_override.scss
+创建文件：`\assets\css\\_override.scss`
 ```scss
 // ==============================
 // Override Variables

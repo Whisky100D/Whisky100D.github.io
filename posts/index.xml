@@ -5,18 +5,18 @@
         <description>所有文章 | Whisky100D&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 03 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://whisky100d.github.io/posts/" rel="self" type="application/rss+xml" /><item>
     <title>Python多线程卖票</title>
-    <link>https://whisky100d.github.io/python%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8D%96%E7%A5%A8/</link>
+    <link>https://whisky100d.github.io/2/</link>
     <pubDate>Sat, 03 Dec 2022 00:00:00 &#43;0000</pubDate>
     <author>Whisky100D</author>
-    <guid>https://whisky100d.github.io/python%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8D%96%E7%A5%A8/</guid>
+    <guid>https://whisky100d.github.io/2/</guid>
     <description><![CDATA[Python多线程卖票包含信号量限制、进度条、彩色字体]]></description>
 </item>
 <item>
     <title>通过Hugo和Actions快速搭建github博客</title>
-    <link>https://whisky100d.github.io/%E9%80%9A%E8%BF%87hugo%E5%92%8Cactions%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2/</link>
+    <link>https://whisky100d.github.io/1/</link>
     <pubDate>Tue, 15 Nov 2022 00:00:00 &#43;0000</pubDate>
     <author>Whisky100D</author>
-    <guid>https://whisky100d.github.io/%E9%80%9A%E8%BF%87hugo%E5%92%8Cactions%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2/</guid>
+    <guid>https://whisky100d.github.io/1/</guid>
     <description><![CDATA[通过Hugo和Actions快速搭建github博客]]></description>
 </item>
 </channel>

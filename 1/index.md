@@ -194,7 +194,11 @@ ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
 
 ## 自定义样式
 
+{{< admonition info>}}
+
 参考：https://lucas-0.github.io/
+
+{{< /admonition>}}
 
 创建文件：`\assets\css\\_custom.scss`
 
@@ -231,4 +235,115 @@ $header-title-font-family: "Rock Salt", -apple-system, system-ui, sans-serif;
 $global-font-secondary-color: #7d7d84;
 ```
 
+## 集成不蒜子统计访问量
+
+{{< admonition info>}}
+
+参考：https://xwi88.com/hugo-plugin-busuanzi/
+
+不蒜子：http://busuanzi.ibruce.info/
+
+{{< /admonition>}}
+
+将自定义配置添加在`[params.page]`文章页面全局配置里
+
+```toml
+ # xwi88 自定义配置 xwi88Cfg
+[params.xwi88Cfg]
+  [params.xwi88Cfg.summary]
+    update = true # summary 更新日期显示
+  [params.xwi88Cfg.page]
+    update = true # pages 更新日期显示
+  [params.xwi88Cfg.busuanzi]
+    enable = true
+    # custom uv for the whole site
+    site_uv = true
+    site_uv_pre = '<i class="fa fa-user"></i>' # 字符或提示语
+    site_uv_post = ''
+    # custom pv for the whole site
+    site_pv = true
+    site_pv_pre = '<i class="fa fa-eye"></i>'
+    # site_pv_post = '<i class="far fa-eye fa-fw"></i>'
+    site_pv_post = ''
+    # custom pv span for one page only
+    page_pv = true
+    page_pv_pre = '<i class="far fa-eye fa-fw"></i>'
+    page_pv_post = ''
+
+```
+
+在`layouts/partials/plugin`目录里创建文件`busuanzi.html`，如果不存在该目录就创建目录，文件内容如下：
+
+```html
+{{ if .params.enable }}
+    {{ if eq .bsz_type "footer" }}
+        {{/* 只有 footer 才刷新，防止页面进行多次调用，计数重复; 只要启用就计数，显示与否看具体设置 */}}
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    {{ end }}
+
+    {{ if or (eq .params.site_pv true) (eq .params.site_uv true) (eq .params.page_pv true) }}
+        {{ if eq .bsz_type "footer" }}
+            <section>
+                {{ if eq .params.site_pv true }}
+                    <span id="busuanzi_container_value_site_pv">
+                        {{- with .params.page_pv_pre -}}
+                            {{ . | safeHTML }}
+                        {{ end }}
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                {{ end }}
+
+                {{ if and (eq .params.site_pv true) (eq .params.site_uv true) }}
+                    &nbsp;|&nbsp;              
+                {{ end }}
+
+                {{ if eq .params.site_uv true }}
+                    <span id="busuanzi_container_value_site_uv">
+                        {{- with .params.site_uv_pre -}}
+                            {{ . | safeHTML }}
+                        {{ end }}
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                {{ end }}
+            </section>
+        {{ end }}
+
+        {{/*  page pv 只在 page 显示  */}}
+        {{ if and (eq .params.page_pv true) (eq .bsz_type "page-reading") }}
+            <span id="busuanzi_container_value_page_pv">
+                {{- with .params.page_pv_pre -}}
+                    {{ . | safeHTML }}
+                {{ end }}
+                <span id="busuanzi_value_page_pv"></span>&nbsp;
+                {{- T "views" -}}
+            </span>
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+```
+
+复制`themes/LoveIt/layouts/partials/footer.html`到`layouts/partials/footer.html`
+
+在第9行`{{- end -}}`后回车添加：
+
+```html
+{{- /* busuanzi plugin */ -}}
+{{- partial "plugin/busuanzi.html" (dict "params" .Site.Params.xwi88Cfg.busuanzi "bsz_type" "footer") -}}
+```
+
+复制`themes/LoveIt/layouts/posts/single.html`到`layouts/posts/single.html`
+
+在第62行`{{- end -}}`后回车添加：
+
+```html
+{{- /* busuanzi plugin */ -}}
+{{- partial "plugin/busuanzi.html" (dict "params" .Site.Params.xwi88Cfg.busuanzi "bsz_type" "page-reading") -}}
+```
+
+{{< admonition>}}
+
+本地测试时出现大量的访问量是正常情况，部署到服务器上后，通过独自的url访问便会恢复正常
+
+{{< /admonition>}}
 

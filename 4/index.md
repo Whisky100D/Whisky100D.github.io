@@ -12,25 +12,17 @@
 
 ```js
 var CryptoJS = require("crypto-js");
-// 只需找到nv和iv
-var nv =
-{
-    "words": [],
-    "sigBytes": 
-}
-var iv = 
-{
-    "words": [],
-    "sigBytes":
-}
-function encrypt(x) {
-    s = CryptoJS.AES.encrypt(x, nv, 
+// 只需找到key和iv
+var key;
+var iv;
+function encrypt(data) {
+    encryptedKey = CryptoJS.AES.encrypt(data, key, 
     {
         iv: iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
     }).toString()
-    return s
+    return encryptedKey
 }
 ```
 
@@ -38,7 +30,7 @@ function encrypt(x) {
 
 ```python
 import execjs
-s = execjs.compile(open('test.js','r').read()).call('encrypt','test')
-print(s)
+result = execjs.compile(open('test.js','r').read()).call('encrypt','test')
+print(result)
 ```
 

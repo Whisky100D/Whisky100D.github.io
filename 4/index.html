@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://whisky100d.github.io/4/" /><meta property="og:image" content="https://whisky100d.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-12-13T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-12-13T14:17:51+08:00" /><meta property="og:site_name" content="Whisky100D&#39;s blog" />
+<meta property="article:modified_time" content="2022-12-13T14:29:29+08:00" /><meta property="og:site_name" content="Whisky100D&#39;s blog" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://whisky100d.github.io/logo.png"/>
 
@@ -27,8 +27,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/whisky100d.github.io\/4\/"
-        },"genre": "posts","keywords": "Python, Nodejs","wordcount":  115 ,
-        "url": "https:\/\/whisky100d.github.io\/4\/","datePublished": "2022-12-13T00:00:00+00:00","dateModified": "2022-12-13T14:17:51+08:00","publisher": {
+        },"genre": "posts","keywords": "Python, Nodejs","wordcount":  96 ,
+        "url": "https:\/\/whisky100d.github.io\/4\/","datePublished": "2022-12-13T00:00:00+00:00","dateModified": "2022-12-13T14:29:29+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -101,7 +101,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">逆向AES加密脚本</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Whisky100D</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E9%80%86%E5%90%91%E7%A0%94%E7%A9%B6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>逆向研究</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-13">2022-12-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 115 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-13">2022-12-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 96 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;
     
 
@@ -152,36 +152,20 @@
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;crypto-js&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 只需找到nv和iv
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">nv</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;words&#34;</span><span class="o">:</span> <span class="p">[],</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;sigBytes&#34;</span><span class="o">:</span> 
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">iv</span> <span class="o">=</span> 
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;words&#34;</span><span class="o">:</span> <span class="p">[],</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;sigBytes&#34;</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">encrypt</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">s</span> <span class="o">=</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">AES</span><span class="p">.</span><span class="nx">encrypt</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">nv</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">// 只需找到key和iv
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">iv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">encrypt</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">encryptedKey</span> <span class="o">=</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">AES</span><span class="p">.</span><span class="nx">encrypt</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">iv</span><span class="o">:</span> <span class="nx">iv</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">mode</span><span class="o">:</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">mode</span><span class="p">.</span><span class="nx">CBC</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">padding</span><span class="o">:</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">pad</span><span class="p">.</span><span class="nx">Pkcs7</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}).</span><span class="nx">toString</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">s</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">encryptedKey</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -194,8 +178,8 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">execjs</span>
-</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">execjs</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test.js&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s1">&#39;encrypt&#39;</span><span class="p">,</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">execjs</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test.js&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s1">&#39;encrypt&#39;</span><span class="p">,</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">

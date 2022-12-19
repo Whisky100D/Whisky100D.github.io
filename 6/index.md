@@ -22,7 +22,7 @@ import sys
 
 # 控制最大线程量
 sem=threading.Semaphore(10)
-urls = ''
+url = ''
 uname = 'admin'
 
 ocr = ddddocr.DdddOcr(show_ad=False)
@@ -42,20 +42,20 @@ def testProxies():
 
 # 获取验证码
 def getCaptcha(AuthSession):
-    response =  AuthSession.get(urls + '/验证码路径', headers=headers, proxies=proxies, timeout=5, verify=False)
+    response =  AuthSession.get(url + '/验证码路径', headers=headers, proxies=proxies, timeout=5, verify=False)
     res = ocr.classification(response.content)
     return res
 
 #登陆请求
 def login(AuthSession,uname,pwd,sem,progress,task):
     try:
-        url = urls + '/登录路径'
+        u = url + '/登录路径'
         d = {
             'username': uname, 
             'password': pwd,
             'captcha':getCaptcha(AuthSession)
         }
-        response = AuthSession.post(url, data=d, headers=headers, proxies=proxies, timeout=5, verify=False)
+        response = AuthSession.post(u, data=d, headers=headers, proxies=proxies, timeout=5, verify=False)
         response = json.loads(response.text)
         if response['msg'] == '密码错误':
             print(Fore.RED + response['msg'] + '      密码：' + pwd)

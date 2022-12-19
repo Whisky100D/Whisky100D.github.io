@@ -3,7 +3,7 @@
         <title>Whisky100D&#39;s blog</title>
         <link>https://whisky100d.github.io/</link>
         <description>Whisky100D&#39;s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 14 Dec 2022 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 19 Dec 2022 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://whisky100d.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title></title>
@@ -12,6 +12,14 @@
     <author>Whisky100D</author>
     <guid>https://whisky100d.github.io/0/</guid>
     <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>验证码自动识别的多线程爆破脚本</title>
+    <link>https://whisky100d.github.io/6/</link>
+    <pubDate>Mon, 19 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>Whisky100D</author>
+    <guid>https://whisky100d.github.io/6/</guid>
+    <description><![CDATA[验证码自动识别、多线程爆破单个参数]]></description>
 </item>
 <item>
     <title>三行代码解决验证码</title>

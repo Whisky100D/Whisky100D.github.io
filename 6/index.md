@@ -42,7 +42,7 @@ def testProxies():
 
 # 获取验证码
 def getCaptcha(AuthSession):
-    response =  AuthSession.post(urls + '/验证码路径', headers=headers, proxies=proxies, timeout=5, verify=False)
+    response =  AuthSession.get(urls + '/验证码路径', headers=headers, proxies=proxies, timeout=5, verify=False)
     res = ocr.classification(response.content)
     return res
 

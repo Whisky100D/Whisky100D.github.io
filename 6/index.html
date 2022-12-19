@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://whisky100d.github.io/6/" /><meta property="og:image" content="https://whisky100d.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-12-19T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-12-19T12:08:22+08:00" /><meta property="og:site_name" content="Whisky100D&#39;s blog" />
+<meta property="article:modified_time" content="2022-12-19T17:46:55+08:00" /><meta property="og:site_name" content="Whisky100D&#39;s blog" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://whisky100d.github.io/logo.png"/>
 
@@ -28,7 +28,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/whisky100d.github.io\/6\/"
         },"genre": "posts","keywords": "Python","wordcount":  519 ,
-        "url": "https:\/\/whisky100d.github.io\/6\/","datePublished": "2022-12-19T00:00:00+00:00","dateModified": "2022-12-19T12:08:22+08:00","publisher": {
+        "url": "https:\/\/whisky100d.github.io\/6\/","datePublished": "2022-12-19T00:00:00+00:00","dateModified": "2022-12-19T17:46:55+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -248,7 +248,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 获取验证码</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">getCaptcha</span><span class="p">(</span><span class="n">AuthSession</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span>  <span class="n">AuthSession</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">urls</span> <span class="o">+</span> <span class="s1">&#39;/验证码路径&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span>  <span class="n">AuthSession</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">urls</span> <span class="o">+</span> <span class="s1">&#39;/验证码路径&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">ocr</span><span class="o">.</span><span class="n">classification</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span>
 </span></span><span class="line"><span class="cl">

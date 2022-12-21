@@ -33,7 +33,7 @@
 
 **推荐下载extended版本，该版本可自定义样式**
 
-{{< /admonition >}}
+{{< /admonition>}}
 
 Hugo下载地址：https://github.com/gohugoio/hugo/releases
 

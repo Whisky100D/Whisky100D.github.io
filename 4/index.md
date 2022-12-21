@@ -8,7 +8,7 @@
 
 本地需要Nodejs环境
 
-{{< /admonition >}}
+{{< /admonition>}}
 
 ```js
 var CryptoJS = require("crypto-js");

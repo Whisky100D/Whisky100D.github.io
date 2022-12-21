@@ -9,7 +9,7 @@
 
 参考：https://www.xiaobinqt.cn/gitalk-init-issue/
 
-{{< /admonition >}}
+{{< /admonition>}}
 
 复制`themes/LoveIt/layouts/partials/comment.html`到`layouts/partials/comment.html`
 
